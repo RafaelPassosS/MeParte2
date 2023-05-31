@@ -107,5 +107,23 @@ public class Gato {
         this.nomeracao = nomeracao;
         this.quantidaderacao = quantidaderacao;
         this.peso = peso;
+        
+        System.out.println("Gato cadastrado com sucesso!");
+    }
+    
+    public Gatoadotado adotarGato() {
+        Gatoadotado gatoadotado = new Gatoadotado();
+        gatoadotado.setCodigo(this.getCodigo());
+        gatoadotado.setNome(this.getNome());
+        gatoadotado.setRaça(this.getRaça());
+        gatoadotado.setApelido(this.getApelido());
+        gatoadotado.setSexo(this.getSexo());
+        gatoadotado.setDatadeentrada(this.getDatadeentrada());
+        gatoadotado.setIdade(this.getIdade());
+        gatoadotado.setNomeracao(this.getNomeracao());
+        gatoadotado.setQuantidaderacao(this.getQuantidaderacao());
+        gatoadotado.setPeso(this.getPeso());
+
+        return gatoadotado;
     }
 }

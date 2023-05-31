@@ -1,9 +1,13 @@
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Main {
     static ArrayList<Gato> Gatos = new ArrayList<>();
+    static ArrayList<Adotante> Adotantes = new ArrayList<>();
+    static ArrayList<Gatoadotado> Adotados = new ArrayList<>();
     public static void main(String[] args) {
         String opcao = "";
         while(opcao !="0"){
@@ -55,10 +59,8 @@ public class Main {
             Gatos.add(gato);
         }else{
             if(opcao.equals("2")){
-                System.out.print("Digite o codigo do gato: ");
-                String procura = entrada.next();
                 for(int i = 0; i < Gatos.size(); ++i){
-                    if (Gatos.get(i).getCodigo().equals(procura)){
+                        System.out.println("----------------------------------------");
                         System.out.println("Codigo: "+Gatos.get(i).getCodigo());
                         System.out.println("Nome: "+Gatos.get(i).getNome());
                         System.out.println("Raca: "+Gatos.get(i).getRaça());
@@ -69,7 +71,73 @@ public class Main {
                         System.out.println("Quantidade de Racao: "+Gatos.get(i).getQuantidaderacao());
                         System.out.println("Peso: "+Gatos.get(i).getPeso());
                     }
-                            }
+                for(int i = 0; i < Adotados.size(); ++i){
+                    System.out.println("----------------------------------------");                        System.out.println("----------------------------------------");
+                    System.out.println("Codigo: "+Adotados.get(i).getCodigo());
+                    System.out.println("Nome: "+Adotados.get(i).getNome());
+                    System.out.println("Raca: "+Adotados.get(i).getRaça());
+                    System.out.println("Apelido: "+Adotados.get(i).getApelido());
+                    System.out.println("Sexo: "+Adotados.get(i).getSexo());
+                    System.out.println("Data de entrada: "+Adotados.get(i).getDatadeentrada());
+                    System.out.println("Nome da Racao: "+Adotados.get(i).getNomeracao());
+                    System.out.println("Quantidade de Racao: "+Adotados.get(i).getQuantidaderacao());
+                    System.out.println("Peso: "+Adotados.get(i).getPeso());
+                    System.out.println("Cpf do adotante: "+Adotados.get(i).getCpf());
+                    System.out.println("Data de saída: "+Adotados.get(i).getDatadesaida());
+                }
+            }else{
+                if(opcao.equals("3")){
+                    Adotante adotante = new Adotante();
+            System.out.println("Digite o nome do adotante");
+            String nome = entrada.nextLine();
+        
+            System.out.println("Digite o CPF do Adotante:");
+            String cpf = entrada.nextLine();
+        
+            System.out.println("Digite o endereco do adotante:");
+            String endereco = entrada.nextLine();
+        
+            System.out.println("Digite o numero do adotante:");
+            String numero = entrada.nextLine();
+        
+            adotante.cadastrarAdotante(cpf, nome, endereco, numero);
+            Adotantes.add(adotante);
+                }else{
+                    if(opcao.equals("4")){
+                        for(int i = 0; i < Adotantes.size(); ++i){
+                            System.out.println("----------------------------------------");
+                            System.out.println("CPF: "+Adotantes.get(i).getCpf());
+                            System.out.println("Nome "+Adotantes.get(i).getNome());
+                            System.out.println("Endereco: "+Adotantes.get(i).getEndereco());
+                            System.out.println("Numero de telefone: "+Adotantes.get(i).getNumero());
+                        }
+                    }else{
+                        if(opcao.equals("5")){
+                            System.out.print("Insira o codigo do gato: ");
+                            String procuragato = entrada.next();
+                            System.out.print("Insira o CPF do adotante: ");
+                            String procuraadotante = entrada.next();
+                            System.out.print("Insira a data: ");
+                            String data = entrada.next();
+                            
+                            for(int i = 0; i < Gatos.size(); ++i){
+                                if(Gatos.get(i).getCodigo().equals(procuragato)){
+                                    for(int j = 0; j < Adotantes.size(); ++j){
+                                        if(Adotantes.get(j).getCpf().equals(procuraadotante)){
+                                            Gato gato = Gatos.get(i);
+                                            Gatoadotado gatoadotado = gato.adotarGato();
+                                            gatoadotado.setCpf(Adotantes.get(j).getCpf());
+                                            gatoadotado.setDatadesaida(data);
+                                            Adotados.add(gatoadotado);
+                                            Gatos.remove(Gatos.get(i));
+                                            System.out.print("Gato adotado com sucesso!");
+                                        }
+                                    }
+                                }
+                    }
+                        }
+                    }
+                }
             }
         }
         }
