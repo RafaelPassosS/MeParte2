@@ -1,145 +1,179 @@
-
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.Set;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class Main {
     static ArrayList<Gato> Gatos = new ArrayList<>();
     static ArrayList<Adotante> Adotantes = new ArrayList<>();
     static ArrayList<Gatoadotado> Adotados = new ArrayList<>();
+
     public static void main(String[] args) {
-        String opcao = "";
-        while(opcao !="0"){
-            Scanner entrada = new Scanner(System.in);
-                    System.out.println(""
-                + "1 - Cadastrar Gatos \n"      
-                + "2 - Consultar Gatos \n"
-                + "3 - Cadastrar Adotantes \n"
-                + "4 - Consultar Adotantes \n"
-                + "5 - Adotar Gato \n"
-                + "6 - Relatorio de provisões");
-        System.out.println("Selecione sua opcaoo");
-        opcao = entrada.nextLine();
-        if(opcao.equals("1")){
-            Gato gato = new Gato();
-            System.out.println("Digite o codigo do gato:");
-            String codigo = entrada.nextLine();
-        
-            System.out.println("Digite o nome do gato:");
-            String nome = entrada.nextLine();
-        
-            System.out.println("Digite a raca do gato:");
-            String raca = entrada.nextLine();
-        
-            System.out.println("Digite o apelido do gato:");
-            String apelido = entrada.nextLine();
-        
-            System.out.println("Digite o sexo do gato:");
-            String sexo = entrada.nextLine();
-        
-            System.out.println("Digite a data de entrada do gato:");
-            String datadeentrada = entrada.nextLine();
-        
-            System.out.println("Digite a idade do gato:");
-            int idade = entrada.nextInt();
-        
-            System.out.println("Digite o nome da ração do gato:");
-            String nomeracao = entrada.nextLine();
-            
-            entrada.nextLine();
-        
-            System.out.println("Digite a quantidade de ração do gato:");
-            double quantidaderacao = entrada.nextDouble();
-        
-            System.out.println("Digite o peso do gato:");
-            double peso = entrada.nextDouble();
-            
-            gato.cadastrarGato(codigo, nome, raca, apelido, sexo, datadeentrada, idade, nomeracao, quantidaderacao, peso);
-            Gatos.add(gato);
-        }else{
-            if(opcao.equals("2")){
-                for(int i = 0; i < Gatos.size(); ++i){
-                        System.out.println("----------------------------------------");
-                        System.out.println("Codigo: "+Gatos.get(i).getCodigo());
-                        System.out.println("Nome: "+Gatos.get(i).getNome());
-                        System.out.println("Raca: "+Gatos.get(i).getRaça());
-                        System.out.println("Apelido: "+Gatos.get(i).getApelido());
-                        System.out.println("Sexo: "+Gatos.get(i).getSexo());
-                        System.out.println("Data de entrada: "+Gatos.get(i).getDatadeentrada());
-                        System.out.println("Nome da Racao: "+Gatos.get(i).getNomeracao());
-                        System.out.println("Quantidade de Racao: "+Gatos.get(i).getQuantidaderacao());
-                        System.out.println("Peso: "+Gatos.get(i).getPeso());
-                    }
-                for(int i = 0; i < Adotados.size(); ++i){
-                    System.out.println("----------------------------------------");                        System.out.println("----------------------------------------");
-                    System.out.println("Codigo: "+Adotados.get(i).getCodigo());
-                    System.out.println("Nome: "+Adotados.get(i).getNome());
-                    System.out.println("Raca: "+Adotados.get(i).getRaça());
-                    System.out.println("Apelido: "+Adotados.get(i).getApelido());
-                    System.out.println("Sexo: "+Adotados.get(i).getSexo());
-                    System.out.println("Data de entrada: "+Adotados.get(i).getDatadeentrada());
-                    System.out.println("Nome da Racao: "+Adotados.get(i).getNomeracao());
-                    System.out.println("Quantidade de Racao: "+Adotados.get(i).getQuantidaderacao());
-                    System.out.println("Peso: "+Adotados.get(i).getPeso());
-                    System.out.println("Cpf do adotante: "+Adotados.get(i).getCpf());
-                    System.out.println("Data de saída: "+Adotados.get(i).getDatadesaida());
-                }
-            }else{
-                if(opcao.equals("3")){
-                    Adotante adotante = new Adotante();
-            System.out.println("Digite o nome do adotante");
-            String nome = entrada.nextLine();
-        
-            System.out.println("Digite o CPF do Adotante:");
-            String cpf = entrada.nextLine();
-        
-            System.out.println("Digite o endereco do adotante:");
-            String endereco = entrada.nextLine();
-        
-            System.out.println("Digite o numero do adotante:");
-            String numero = entrada.nextLine();
-        
-            adotante.cadastrarAdotante(cpf, nome, endereco, numero);
-            Adotantes.add(adotante);
-                }else{
-                    if(opcao.equals("4")){
-                        for(int i = 0; i < Adotantes.size(); ++i){
-                            System.out.println("----------------------------------------");
-                            System.out.println("CPF: "+Adotantes.get(i).getCpf());
-                            System.out.println("Nome "+Adotantes.get(i).getNome());
-                            System.out.println("Endereco: "+Adotantes.get(i).getEndereco());
-                            System.out.println("Numero de telefone: "+Adotantes.get(i).getNumero());
-                        }
-                    }else{
-                        if(opcao.equals("5")){
-                            System.out.print("Insira o codigo do gato: ");
-                            String procuragato = entrada.next();
-                            System.out.print("Insira o CPF do adotante: ");
-                            String procuraadotante = entrada.next();
-                            System.out.print("Insira a data: ");
-                            String data = entrada.next();
-                            
-                            for(int i = 0; i < Gatos.size(); ++i){
-                                if(Gatos.get(i).getCodigo().equals(procuragato)){
-                                    for(int j = 0; j < Adotantes.size(); ++j){
-                                        if(Adotantes.get(j).getCpf().equals(procuraadotante)){
-                                            Gato gato = Gatos.get(i);
-                                            Gatoadotado gatoadotado = gato.adotarGato();
-                                            gatoadotado.setCpf(Adotantes.get(j).getCpf());
-                                            gatoadotado.setDatadesaida(data);
-                                            Adotados.add(gatoadotado);
-                                            Gatos.remove(Gatos.get(i));
-                                            System.out.print("Gato adotado com sucesso!");
-                                        }
-                                    }
-                                }
-                    }
-                        }
+        JFrame frame = new JFrame("Sistema de Adoção de Gatos");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new GridLayout(0, 1));
+
+        JButton btnCadastrarGatos = new JButton("Cadastrar Gatos");
+        btnCadastrarGatos.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cadastrarGato();
+            }
+        });
+        frame.add(btnCadastrarGatos);
+
+        JButton btnConsultarGatos = new JButton("Consultar Gatos");
+        btnConsultarGatos.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                consultarGatos();
+            }
+        });
+        frame.add(btnConsultarGatos);
+
+        JButton btnCadastrarAdotantes = new JButton("Cadastrar Adotantes");
+        btnCadastrarAdotantes.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cadastrarAdotante();
+            }
+        });
+        frame.add(btnCadastrarAdotantes);
+
+        JButton btnConsultarAdotantes = new JButton("Consultar Adotantes");
+        btnConsultarAdotantes.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                consultarAdotantes();
+            }
+        });
+        frame.add(btnConsultarAdotantes);
+
+        JButton btnAdotarGato = new JButton("Adotar Gato");
+        btnAdotarGato.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                adotarGato();
+            }
+        });
+        frame.add(btnAdotarGato);
+
+        JButton btnRelatorio = new JButton("Relatório de Provisões");
+        btnRelatorio.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                gerarRelatorio();
+            }
+        });
+        frame.add(btnRelatorio);
+
+        frame.pack();
+        frame.setVisible(true);
+    }
+
+    public static void cadastrarGato() {
+        Gato gato = new Gato();
+
+        String codigo = JOptionPane.showInputDialog("Digite o código do gato:");
+        String nome = JOptionPane.showInputDialog("Digite o nome do gato:");
+        String raca = JOptionPane.showInputDialog("Digite a raça do gato:");
+        String apelido = JOptionPane.showInputDialog("Digite o apelido do gato:");
+        String sexo = JOptionPane.showInputDialog("Digite o sexo do gato:");
+        String dataDeEntrada = JOptionPane.showInputDialog("Digite a data de entrada do gato:");
+        int idade = Integer.parseInt(JOptionPane.showInputDialog("Digite a idade do gato:"));
+        String nomeRacao = JOptionPane.showInputDialog("Digite o nome da ração do gato:");
+        double quantidadeRacao = Double.parseDouble(JOptionPane.showInputDialog("Digite a quantidade de ração do gato:"));
+        double peso = Double.parseDouble(JOptionPane.showInputDialog("Digite o peso do gato:"));
+
+        gato.cadastrarGato(codigo, nome, raca, apelido, sexo, dataDeEntrada, idade, nomeRacao, quantidadeRacao, peso);
+        Gatos.add(gato);
+
+        JOptionPane.showMessageDialog(null, "Gato cadastrado com sucesso!");
+    }
+
+    public static void consultarGatos() {
+        StringBuilder output = new StringBuilder();
+
+        for (Gato gato : Gatos) {
+            output.append("----------------------------------------\n");
+            output.append("Código: ").append(gato.getCodigo()).append("\n");
+            output.append("Nome: ").append(gato.getNome()).append("\n");
+            output.append("Raça: ").append(gato.getRaça()).append("\n");
+            output.append("Apelido: ").append(gato.getApelido()).append("\n");
+            output.append("Sexo: ").append(gato.getSexo()).append("\n");
+            output.append("Data de entrada: ").append(gato.getDatadeentrada()).append("\n");
+            output.append("Nome da Ração: ").append(gato.getNomeracao()).append("\n");
+            output.append("Quantidade de Ração: ").append(gato.getQuantidaderacao()).append("\n");
+            output.append("Peso: ").append(gato.getPeso()).append("\n");
+        }
+
+        for (Gatoadotado gatoAdotado : Adotados) {
+            output.append("----------------------------------------\n");
+            output.append("Código: ").append(gatoAdotado.getCodigo()).append("\n");
+            output.append("Nome: ").append(gatoAdotado.getNome()).append("\n");
+            output.append("Raça: ").append(gatoAdotado.getRaça()).append("\n");
+            output.append("Apelido: ").append(gatoAdotado.getApelido()).append("\n");
+            output.append("Sexo: ").append(gatoAdotado.getSexo()).append("\n");
+            output.append("Data de entrada: ").append(gatoAdotado.getDatadeentrada()).append("\n");
+            output.append("Nome da Ração: ").append(gatoAdotado.getNomeracao()).append("\n");
+            output.append("Quantidade de Ração: ").append(gatoAdotado.getQuantidaderacao()).append("\n");
+            output.append("Peso: ").append(gatoAdotado.getPeso()).append("\n");
+            output.append("CPF do adotante: ").append(gatoAdotado.getCpf()).append("\n");
+            output.append("Data de saída: ").append(gatoAdotado.getDatadesaida()).append("\n");
+        }
+
+        JOptionPane.showMessageDialog(null, output.toString(), "Consulta de Gatos", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public static void cadastrarAdotante() {
+        Adotante adotante = new Adotante();
+
+        String nome = JOptionPane.showInputDialog("Digite o nome do adotante:");
+        String cpf = JOptionPane.showInputDialog("Digite o CPF do adotante:");
+        String endereco = JOptionPane.showInputDialog("Digite o endereço do adotante:");
+        String numero = JOptionPane.showInputDialog("Digite o número do adotante:");
+
+        adotante.cadastrarAdotante(cpf, nome, endereco, numero);
+        Adotantes.add(adotante);
+
+        JOptionPane.showMessageDialog(null, "Adotante cadastrado com sucesso!");
+    }
+
+    public static void consultarAdotantes() {
+        StringBuilder output = new StringBuilder();
+
+        for (Adotante adotante : Adotantes) {
+            output.append("----------------------------------------\n");
+            output.append("CPF: ").append(adotante.getCpf()).append("\n");
+            output.append("Nome: ").append(adotante.getNome()).append("\n");
+            output.append("Endereço: ").append(adotante.getEndereco()).append("\n");
+            output.append("Número de telefone: ").append(adotante.getNumero()).append("\n");
+        }
+
+        JOptionPane.showMessageDialog(null, output.toString(), "Consulta de Adotantes", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public static void adotarGato() {
+        String procurarGato = JOptionPane.showInputDialog("Insira o código do gato:");
+        String procurarAdotante = JOptionPane.showInputDialog("Insira o CPF do adotante:");
+        String data = JOptionPane.showInputDialog("Insira a data:");
+
+        for (int i = 0; i < Gatos.size(); ++i) {
+            if (Gatos.get(i).getCodigo().equals(procurarGato)) {
+                for (int j = 0; j < Adotantes.size(); ++j) {
+                    if (Adotantes.get(j).getCpf().equals(procurarAdotante)) {
+                        Gato gato = Gatos.get(i);
+                        Gatoadotado gatoAdotado = gato.adotarGato();
+                        gatoAdotado.setCpf(Adotantes.get(j).getCpf());
+                        gatoAdotado.setDatadesaida(data);
+                        Adotados.add(gatoAdotado);
+                        Gatos.remove(Gatos.get(i));
+                        JOptionPane.showMessageDialog(null, "Gato adotado com sucesso!");
                     }
                 }
             }
         }
-        }
+    }
+
+    public static void gerarRelatorio() {
+        // Implemente aqui a geração do relatório de provisões
+        JOptionPane.showMessageDialog(null, "Relatório de provisões gerado!", "Relatório", JOptionPane.INFORMATION_MESSAGE);
     }
 }
