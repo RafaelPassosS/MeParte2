@@ -2,6 +2,8 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -173,7 +175,31 @@ public class Main {
     }
 
     public static void gerarRelatorio() {
-        // Implemente aqui a geração do relatório de provisões
-        JOptionPane.showMessageDialog(null, "Relatório de provisões gerado!", "Relatório", JOptionPane.INFORMATION_MESSAGE);
+    HashMap<String, Double> provisoes = new HashMap<>();
+
+    for (Gato gato : Gatos) {
+        double quantidadeRacao = gato.getQuantidaderacao();
+        String nomeRacao = gato.getNomeracao();
+
+        if (provisoes.containsKey(nomeRacao)) {
+            double total = provisoes.get(nomeRacao) + quantidadeRacao;
+            provisoes.put(nomeRacao, total);
+        } else {
+            provisoes.put(nomeRacao, quantidadeRacao);
+        }
+    }
+
+    StringBuilder relatorio = new StringBuilder();
+    relatorio.append("Relatório de Provisões:\n");
+    relatorio.append("========================\n");
+    for (Map.Entry<String, Double> entry : provisoes.entrySet()) {
+        String nomeRacao = entry.getKey();
+        double quantidadeRacao = entry.getValue();
+        relatorio.append("Ração: ").append(nomeRacao).append("\n");
+        relatorio.append("Quantidade: ").append(quantidadeRacao).append(" g\n");
+        relatorio.append("========================\n");
+    }
+
+    JOptionPane.showMessageDialog(null, relatorio.toString(), "Relatório de Provisões", JOptionPane.INFORMATION_MESSAGE);
     }
 }
