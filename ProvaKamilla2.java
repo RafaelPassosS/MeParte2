@@ -13,27 +13,27 @@ public class ProvaKamilla2 {
         String opc = "10";
         while(opc != "0"){
             Scanner entrada = new Scanner(System.in);
-            System.out.print("1- Cadastrar Clientes");
-            System.out.print("2 - Cadastrar Vendedor");
-            System.out.print("3 - Cadastrar Produto");
-            System.out.print("4 - Vender Produto");
-            System.out.print("5 - Relatorio de Vendas");
-            System.out.print("Selecione sua opção: ");
+            System.out.print("1- Cadastrar Clientes \n");
+            System.out.print("2 - Cadastrar Vendedor \n");
+            System.out.print("3 - Cadastrar Produto \n");
+            System.out.print("4 - Vender Produto \n");
+            System.out.print("5 - Relatorio de Vendas \n");
+            System.out.print("Selecione sua opção:");
             
             opc = entrada.next();
             
             if(opc.equals("1")){
                 Cliente cliente = new Cliente();
-                System.out.println("insira o Codigo do cliente: \n");
-                String codigo = entrada.nextLine();
-                System.out.println("Insira o Nome do Cliente: \n");
-                String nome = entrada.nextLine();
-                System.out.println("Insira o endereco do Cliente; \n");
-                String endereco =  entrada.nextLine();
-                System.out.println("Insira o Telefone do cliente: \n");
-                String telefone = entrada.nextLine();
-                System.out.println("Insira o CPF do Cliente: \n");
-                String cpf = entrada.nextLine();
+                System.out.println("insira o Codigo do cliente:");
+                String codigo = entrada.next();
+                System.out.println("Insira o Nome do Cliente:");
+                String nome = entrada.next();
+                System.out.println("Insira o endereco do Cliente;");
+                String endereco =  entrada.next();
+                System.out.println("Insira o Telefone do cliente:");
+                String telefone = entrada.next();
+                System.out.println("Insira o CPF do Cliente:");
+                String cpf = entrada.next();
                 
                 cliente.cadastrarCliente(codigo, nome, endereco, telefone, cpf);
                 Clientes.add(cliente);
@@ -42,7 +42,20 @@ public class ProvaKamilla2 {
                     
                 }else{
                     if(opc.equals("3")){
+                        Produto produto = new Produto();
+                        System.out.print("Insira o codigo do produto: ");
+                        String codigo = entrada.next();
+                        System.out.print("Insira a descrição do produto: ");
+                        String descricao = entrada.next();
+                        System.out.print("Insira a marca do produto: ");
+                        String marca = entrada.next();
+                        System.out.print("insira o modelo do produto: ");
+                        String modelo = entrada.next();
+                        System.out.print("insira o valor do produto: ");
+                        double valor = entrada.nextDouble();
                         
+                        produto.cadastrarProduto(codigo, descricao, marca, modelo, valor);
+                        Produtos.add(produto);
                     }else{
                         if(opc.equals("4")){
                             
