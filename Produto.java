@@ -13,7 +13,7 @@ public class Produto {
     private String descricao;
     private String marca;
     private String modelo;
-    private String valor;
+    private double valor;
     
     public String getCodigo() {
         return codigo;
@@ -47,15 +47,15 @@ public class Produto {
         this.modelo = modelo;
     }
     
-    public String getValor() {
+    public double getValor() {
         return valor;
     }
     
-    public void setValor(String valor) {
+    public void setValor(double valor) {
         this.valor = valor;
     }
     
-    public void cadastrarProduto(String codigo, String descricao, String marca, String modelo, String valor){
+    public void cadastrarProduto(String codigo, String descricao, String marca, String modelo, double valor){
         this.codigo = codigo;
         this.descricao = descricao;
         this.marca = marca;
